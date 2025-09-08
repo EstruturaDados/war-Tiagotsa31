@@ -135,3 +135,4 @@ int verificarMissao(char* missao, Territorio* mapa, int tamanho){
     return 0;
 }
 
+if(strstr)
