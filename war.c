@@ -135,4 +135,19 @@ int verificarMissao(char* missao, Territorio* mapa, int tamanho){
     return 0;
 }
 
-if(strstr)
+if(strstr(missao, "cor vermelha") != NULL){
+    for (int i =0; i < tamanho; i++){
+        if(strcasecmp(mapa[i].cor, "vermelha") == 0 && mapa[i].tropas > 0) return 0;
+    }
+    return 1;
+}
+
+if(strstr(missao, "metade ou mais do mapa") != NULL){
+    for(int i = 0; i < tamanho; i++){
+        int cont = 0;
+        for(int j = 0; j < tamanho; j++){
+            if(strcasecmp(mapa[i].cor, mapa[j].cor) == 0) cont++;
+        }
+        
+    }
+}
