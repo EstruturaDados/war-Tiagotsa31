@@ -78,7 +78,7 @@ void exibirMapa(const Territorio* mapa, int n){
     }
 }
 
-// ETAPA 2 - FUNÇÃO DE ATAQUE ENTRE TERRITÓRIOS
+// --- ETAPA 2 - FUNÇÃO DE ATAQUE ENTRE TERRITÓRIOS ---
 // Simula um ataque usando dados(valores aleatórios de 1 a 6)
 void atacar(Territorio* atacante, Territorio* defensor){
     if(strcmp(atacante->cor, defensor->cor) == 0){
@@ -111,7 +111,7 @@ void atacar(Territorio* atacante, Territorio* defensor){
     }
 }
 
-// ETAPA 3 - MISSÕES ESTRATÉGICAS
+// --- ETAPA 3 - MISSÕES ESTRATÉGICAS ---
 // Exibe a missão do jogador (somente no início)
 void exibirMissao(const char* missao){
     printf("\nSua missão: %s\n", missao);
@@ -148,6 +148,36 @@ if(strstr(missao, "metade ou mais do mapa") != NULL){
         for(int j = 0; j < tamanho; j++){
             if(strcasecmp(mapa[i].cor, mapa[j].cor) == 0) cont++;
         }
-        
+        if(cont * 2 >= tamanho) return 1;
+    }
+    return 0;
+}
+
+if(strstr(missao, "10 ou mais tropas") != NULL){
+    for(int i = 0; i < tamanho; i++){
+        if(mapa[i].tropas >= 10) return 1;
+    }
+    return 0;
+}
+
+if(strstr(missao, "0 tropas") != NULL){
+    for(int i = 0; i < tamanho; i++){
+        if(mapa[i].tropas == 0) return 0;
+    }
+    return 1;
+}
+return 0;
+}
+
+// --- LIBERAÇÃO DE MEMÓRIA ---
+
+void liberarMemoria(Territorio* mapa, char** missoesJogadores, int qntJogadores){
+    if(mapa) free(mapa);
+    if(missoesJogadores){
+        for(int i = 0; i < qntJogadores; i++){
+            free(missoesJogadores[i]);
+        }
+        free(missoesJogadores);
     }
 }
+
